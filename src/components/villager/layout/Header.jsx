@@ -72,6 +72,11 @@ function Header() {
             </li>
 
             <li>
+              <Link to="/complaints">
+                My Complaints
+              </Link>
+            </li>
+            <li>
               <Link to="/contact">
                 Contact
               </Link>
@@ -81,7 +86,7 @@ function Header() {
               <li>
                 <Link
                   to="/"
-                  className="btn btn-primary px-4 py-2"
+                  className="btn btn-sm btn-success text-white rounded-pill px-4 py-2"
                   onClick={logout}
                 >
                   Logout
@@ -92,15 +97,16 @@ function Header() {
                 <li>
                   <Link
                     to="/login"
-                    className="btn btn-primary me-2 px-4 py-2"
+                    className="btn btn-sm btn-success text-white rounded-pill px-4 py-2"
                   >
                     Login
                   </Link>
                 </li>
+                &nbsp;
                 <li>
                   <Link
                     to="/register"
-                    className="btn btn-primary px-4 py-2"
+                    className="btn btn-sm btn-success text-white rounded-pill px-4 py-2"
                   >
                     Register
                   </Link>

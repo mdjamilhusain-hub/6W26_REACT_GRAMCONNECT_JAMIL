@@ -13,88 +13,86 @@ const override = {
 
 
 
-export default function ManageComplaints(){
-    
-     let [loading, setLoading] = useState(false);
-    
-      const [users, setUsers] = useState([])
-    
-      async function fetchUsers() {
-        try {
-          setLoading(true)
-          let res = await UserService.all()
-          setUsers(res)
-        } catch (err) {
-          console.log(err)
-        }
-        finally {
-          setLoading(false)
-        }
-      }
-    
-    
-      useEffect(() => {
-        fetchUsers();
-      }, [])
-    
-    
-      async function deleteUser(id) {
-        try {
-    
+export default function ManageComplaints() {
+
+  let [loading, setLoading] = useState(false);
+
+  const [users, setUsers] = useState([])
+
+  async function fetchUsers() {
+    try {
+      setLoading(true)
+      let res = await UserService.all()
+      setUsers(res)
+    } catch (err) {
+      console.log(err)
+    }
+    finally {
+      setLoading(false)
+    }
+  }
+
+
+  useEffect(() => {
+    fetchUsers();
+  }, [])
+
+
+  async function deleteUser(id) {
+    try {
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          CategoryService.deleteCat(id)
+          fetchCategories();
           Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
-            if (result.isConfirmed) {
-              CategoryService.deleteCat(id)
-              fetchCategories();
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
-            }
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
           });
-    
-        } catch (err) {
-          toast.error("Error Deleting User")
-          console.log("Error: ", err)
         }
-      }
-    
-   return (
-        <>
-        
-        <main className="main">
-  {/* Page Title */}
-  <div
-    className="page-title dark-background"
-    data-="fade"
-    style={{ backgroundImage: "url(assets/img/page-title-bg.webp)" }}
-  >
-    <div className="container position-relative">
-      <h1><complaints>
-        </complaints></h1>
-        <h3>cotegories</h3>
-      <nav className="breadcrumbs">
-        <ol>
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li className="current">complaints</li>
-        </ol>
-      </nav>
-    </div>
-  </div>
+      });
 
-</main>
+    } catch (err) {
+      toast.error("Error Deleting User")
+      console.log("Error: ", err)
+    }
+  }
 
-  {loading ?
+  return (
+    <>
+
+      <main className="main">
+        {/* Page Title */}
+        <div
+          className="page-title dark-background"
+          data-="fade"
+          style={{ backgroundImage: "url(assets/img/page-title-bg.webp)" }}
+        >
+          <div className="container position-relative">
+            <h1>Complaints</h1>
+            <nav className="breadcrumbs">
+              <ol>
+                <li>
+                  <Link to="/admin">Dashboard</Link>
+                </li>
+                <li className="current">Complaints</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+      </main>
+
+      {loading ?
         <PacmanLoader
           color="#81C408"
           loading={loading}
@@ -125,7 +123,7 @@ export default function ManageComplaints(){
                       <td>
                         <p className="mb-0 mt-4">{index + 1}</p>
                       </td>
-                     
+
                       <td>
                         <p className="mb-0 mt-4">{user.name}</p>
                       </td>
@@ -142,7 +140,7 @@ export default function ManageComplaints(){
                         <p className="mb-0 mt-4">{new Date(user.createdAt).toLocaleDateString()}</p>
                       </td>
                       <td>
-                       
+
                         <button onClick={() => { deleteUser(user.id) }} className="btn btn-md rounded-circle bg-light border mt-4">
                           <i className="bi bi-trash text-danger" />
                         </button>
@@ -157,6 +155,6 @@ export default function ManageComplaints(){
             </div>
           </div>
         </div>}
-</>
-   )
+    </>
+  )
 }

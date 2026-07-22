@@ -78,14 +78,13 @@ export default function ManageCategories(){
     style={{ backgroundImage: "url(assets/img/page-title-bg.webp)" }}
   >
     <div className="container position-relative">
-      <h1>Events</h1>
-        <h3>Events</h3>
+      <h1>Schemes</h1>
       <nav className="breadcrumbs">
         <ol>
           <li>
-            <a href="index.html">Home</a>
+            <Link to="/admin">Dashboard</Link>
           </li>
-          <li className="current">Events</li>
+          <li className="current">Schemes</li>
         </ol>
       </nav>
     </div>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { FadeLoader, PacmanLoader } from "react-spinners";
+import { FadeLoader, HashLoader, PacmanLoader } from "react-spinners";
 import Swal from "sweetalert2";
 import UserService from "../../../services/UserService";
 
@@ -13,87 +13,87 @@ const override = {
 
 
 
-export default function ManageVillagers(){
-    
-     let [loading, setLoading] = useState(false);
-    
-      const [users, setUsers] = useState([])
-    
-      async function fetchUsers() {
-        try {
-          setLoading(true)
-          let res = await UserService.all()
-          setUsers(res)
-        } catch (err) {
-          console.log(err)
-        }
-        finally {
-          setLoading(false)
-        }
-      }
-    
-    
-      useEffect(() => {
-        fetchUsers();
-      }, [])
-    
-    
-      async function deleteUser(id) {
-        try {
-    
+export default function ManageVillagers() {
+
+  let [loading, setLoading] = useState(false);
+
+  const [users, setUsers] = useState([])
+
+  async function fetchUsers() {
+    try {
+      setLoading(true)
+      let res = await UserService.all()
+      setUsers(res)
+    } catch (err) {
+      console.log(err)
+    }
+    finally {
+      setLoading(false)
+    }
+  }
+
+
+  useEffect(() => {
+    fetchUsers();
+  }, [])
+
+
+  async function deleteUser(id) {
+    try {
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          CategoryService.deleteCat(id)
+          fetchCategories();
           Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
-            if (result.isConfirmed) {
-              CategoryService.deleteCat(id)
-              fetchCategories();
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
-            }
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
           });
-    
-        } catch (err) {
-          toast.error("Error Deleting User")
-          console.log("Error: ", err)
         }
-      }
-    
-   return (
-        <>
-        
-        <main className="main">
-  {/* Page Title */}
-  <div
-    className="page-title dark-background"
-    data-="fade"
-    style={{ backgroundImage: "url(assets/img/page-title-bg.webp)" }}
-  >
-    <div className="container position-relative">
-      <h1>Villagers</h1>
-      <nav className="breadcrumbs">
-        <ol>
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li className="current">Contact</li>
-        </ol>
-      </nav>
-    </div>
-  </div>
+      });
 
-</main>
+    } catch (err) {
+      toast.error("Error Deleting User")
+      console.log("Error: ", err)
+    }
+  }
 
-  {loading ?
-        <PacmanLoader
+  return (
+    <>
+
+      <main className="main">
+        {/* Page Title */}
+        <div
+          className="page-title dark-background"
+          data-="fade"
+          style={{ backgroundImage: "url(assets/img/page-title-bg.webp)" }}
+        >
+          <div className="container position-relative">
+            <h1>Villagers</h1>
+            <nav className="breadcrumbs">
+              <ol>
+                <li>
+                  <Link to="/admin">Dashboard</Link>
+                </li>
+                <li className="current">Villagers</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+      </main>
+
+      {loading ?
+        <HashLoader
           color="#81C408"
           loading={loading}
           cssOverride={override}
@@ -123,7 +123,7 @@ export default function ManageVillagers(){
                       <td>
                         <p className="mb-0 mt-4">{index + 1}</p>
                       </td>
-                     
+
                       <td>
                         <p className="mb-0 mt-4">{user.name}</p>
                       </td>
@@ -140,7 +140,7 @@ export default function ManageVillagers(){
                         <p className="mb-0 mt-4">{new Date(user.createdAt).toLocaleDateString()}</p>
                       </td>
                       <td>
-                       
+
                         <button onClick={() => { deleteUser(user.id) }} className="btn btn-md rounded-circle bg-light border mt-4">
                           <i className="bi bi-trash text-danger" />
                         </button>
@@ -155,6 +155,6 @@ export default function ManageVillagers(){
             </div>
           </div>
         </div>}
-</>
-   )
+    </>
+  )
 }

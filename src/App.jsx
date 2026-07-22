@@ -9,15 +9,17 @@ import Blog from './components/villager/pages/Blog'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import { ToastContainer } from 'react-toastify'
-import Categories from './Pages/Admin/Categories'
 import Dashboard from './components/admin/Pages/Dashboard'
 import AdminLayout from './components/admin/AdminLayout/AdminLayout'
-import Villagers from './Pages/Admin/Villagers'
 import ManageVillagers from './components/admin/villager/ManageVillagers'
 import ManageCategories from './components/admin/category/ManageCategories'
 import ManageComplaints from './components/admin/complaints/ManageComplaints'
 import ManageSchemes from './components/admin/Schemes/ManageSchemes'
 import ManageEvents from './components/admin/Events/ManageEvents'
+import AddCategory from './components/admin/category/AddCategory'
+import EditCategory from './components/admin/category/EditCategory'
+import ViewComplaint from './components/villager/complaint/ViewComplaint'
+import AddComplaint from './components/villager/complaint/AddComplaint'
 
 function App() {
 
@@ -32,12 +34,13 @@ function App() {
             <Route index element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/contact' element={<Contact />} />
+            <Route path='/complaints' element={<ViewComplaint />} />
+            <Route path='/complaint/add' element={<AddComplaint />} />
             <Route path='/Services' element={<Services />} />
             <Route path='/testimonials' element={<Testimonials />} />
             <Route path='/Blog' element={<Blog />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/categories' element={<Categories />} />
 
 
           </Route>
@@ -47,9 +50,12 @@ function App() {
             <Route index element={<Dashboard/>}></Route>
             <Route path="villagers" element={<ManageVillagers/>}></Route>
             <Route path="categories" element={<ManageCategories/>}></Route>
+            <Route path="category/add" element={<AddCategory/>}></Route>
+            <Route path="category/edit/:id" element={<EditCategory/>}></Route>
             <Route path="complaints" element={<ManageComplaints/>}></Route>
             <Route path="Schemes" element={<ManageSchemes/>}></Route>
             <Route path="Events" element={<ManageEvents/>}></Route>
+            
 
           
           </Route>

@@ -1,11 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import AuthService from '../../../services/AuthService'
 function AdminHeader() {
 
   const nav = useNavigate()
-  function logout() {
-    AuthService.logout();
+  async function logout() {
+    await AuthService.logout();
     toast.success("Logged Out")
     nav("/")
   }
@@ -18,7 +18,7 @@ function AdminHeader() {
       <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
 
         {/* Logo */}
-        <Link to="/" className="logo d-flex align-items-center">
+        <NavLink to="/" className="logo d-flex align-items-center">
           <img
             src="/assets/img/logo.png"
             alt="Gramin-Connect Logo"
@@ -41,52 +41,52 @@ function AdminHeader() {
             <span style={{ color: "#ffffff" }}>Gramin-</span>
             <span style={{ color: "#f4b400" }}>Connect</span>
           </h1>
-        </Link>
+        </NavLink>
 
         {/* Navigation */}
         <nav id="navmenu" className="navmenu">
           <ul>
             <li>
-              <Link to="/admin" className="active">
+              <NavLink to="/admin">
                 Dashboard
-              </Link>
+              </NavLink>
             </li>
 
             <li>
-              <Link to="/admin/villagers">
+              <NavLink to="/admin/villagers">
                 Villagers
-              </Link>
+              </NavLink>
             </li>
 
             <li>
-              <Link to="/admin/categories">
+              <NavLink to="/admin/categories">
                 Categories
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/admin/complaints">
+              <NavLink to="/admin/complaints">
                 Complaints
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/admin/schemes">
+              <NavLink to="/admin/schemes">
                 Schemes
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/admin/events">
+              <NavLink to="/admin/events">
                 Events
-              </Link>
+              </NavLink>
             </li>
 
             <li>
-              <Link
+              <NavLink
                 to=""
                 onClick={logout}
-                className="btn btn-primary px-4 py-2"
+                className="btn btn-success text-white rounded-pill px-4 py-2"
               >
                 Logout
-              </Link>
+              </NavLink>
             </li>
 
           </ul>
