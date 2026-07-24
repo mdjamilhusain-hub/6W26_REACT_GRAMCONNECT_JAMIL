@@ -12,7 +12,7 @@ function Home(){
       data-bs-interval={5000}
     >
       <div className="carousel-item active">
-        <img src="assets/img/hero_1.jpg" alt="" />
+        <img src="assets/img/village.jpeg" alt="" />
         <div className="carousel-container">
           <h2>Farming is the best solution of worlds starvation</h2>
           <p>
