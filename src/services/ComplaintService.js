@@ -58,9 +58,9 @@ class ComplaintService {
         await updateDoc(docRef, data);
     }
 
-    async deleteCat(id) {
+    async deleteComplaint(id) {
         const docRef = doc(db, dbPath, id);
-        await deleteDoc(docRef)
+        await deleteDoc(docRef);
     }
 }
 

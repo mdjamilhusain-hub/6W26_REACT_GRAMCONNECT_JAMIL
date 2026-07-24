@@ -20,6 +20,9 @@ import AddCategory from './components/admin/category/AddCategory'
 import EditCategory from './components/admin/category/EditCategory'
 import ViewComplaint from './components/villager/complaint/ViewComplaint'
 import AddComplaint from './components/villager/complaint/AddComplaint'
+import ComplaintDetail from './components/admin/complaints/ComplaintDetail'
+import MyComplaintDetail from './components/villager/complaint/MyComplaintDetail'
+import AddGovernmentScheme from './components/admin/governmentScheme/AddGovernmentScheme'
 
 function App() {
 
@@ -35,6 +38,7 @@ function App() {
             <Route path='/about' element={<About />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/complaints' element={<ViewComplaint />} />
+            <Route path='/complaint/:id' element={<MyComplaintDetail />} />
             <Route path='/complaint/add' element={<AddComplaint />} />
             <Route path='/Services' element={<Services />} />
             <Route path='/testimonials' element={<Testimonials />} />
@@ -53,6 +57,8 @@ function App() {
             <Route path="category/add" element={<AddCategory/>}></Route>
             <Route path="category/edit/:id" element={<EditCategory/>}></Route>
             <Route path="complaints" element={<ManageComplaints/>}></Route>
+            <Route path='complaint/:id' element={<ComplaintDetail />} />
+            <Route path='governmentScheme/add' element={<AddGovernmentScheme />} />
             <Route path="Schemes" element={<ManageSchemes/>}></Route>
             <Route path="Events" element={<ManageEvents/>}></Route>
             

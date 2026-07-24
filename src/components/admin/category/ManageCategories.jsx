@@ -91,37 +91,21 @@ export default function ManageCategories() {
             <div className="d-flex justify-content-between align-items-center">
 
               <div>
-
                 <h1>
-
                   All Categories
-
                 </h1>
-
                 <nav className="breadcrumbs">
-
                   <ol>
-
                     <li>
-
                       <Link to="/">
-
                         Home
-
                       </Link>
-
                     </li>
-
                     <li className="current">
-
                       All Categories
-
                     </li>
-
                   </ol>
-
                 </nav>
-
               </div>
 
               <Link
