@@ -109,7 +109,7 @@ export default function ManageCategories() {
               </div>
 
               <Link
-                to="/complaints"
+                to="/admin/category/add"
                 className="btn btn-success rounded-pill px-4 py-2"
               >
 
