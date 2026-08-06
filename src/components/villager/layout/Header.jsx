@@ -32,15 +32,7 @@ function Header() {
 
         {/* Logo */}
         <Link to="/" className="logo d-flex align-items-center">
-          <img
-            src="/assets/img/logo.png"
-            alt="Gramin-Connect Logo"
-            style={{
-              height: "60px",
-              width: "auto",
-              marginRight: "10px",
-            }}
-          />
+         
 
           <h1
             className="sitename"
@@ -51,7 +43,7 @@ function Header() {
               margin: 0,
             }}
           >
-            <span style={{ color: "#ffffff" }}>Gramin-</span>
+            <span style={{ color: "#f4b400" }}>Gramin-</span>
             <span style={{ color: "#f4b400" }}>Connect</span>
           </h1>
         </Link>
