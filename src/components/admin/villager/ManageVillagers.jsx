@@ -51,12 +51,13 @@ export default function ManageVillagers() {
         confirmButtonText: "Yes, delete it!"
       }).then((result) => {
         if (result.isConfirmed) {
-          CategoryService.deleteCat(id)
-          fetchCategories();
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success"
+          UserService.deleteUser(id).then(() => {
+            fetchUsers();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Villager has been deleted.",
+              icon: "success"
+            });
           });
         }
       });
@@ -105,7 +106,7 @@ export default function ManageVillagers() {
         : <div className="container-fluid py-5">
           <div className="container py-5">
             <div className="table-responsive">
-              <table className="table">
+              <table className="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th scope="col">Sr. No.</th>
@@ -119,7 +120,7 @@ export default function ManageVillagers() {
                 </thead>
                 <tbody>
                   {users.map((user, index) => (
-                    <tr>
+                    <tr key={user.id}>
                       <td>
                         <p className="mb-0 mt-4">{index + 1}</p>
                       </td>
@@ -146,9 +147,12 @@ export default function ManageVillagers() {
                         </button>
                       </td>
                     </tr>
-                  ))
-
-                  }
+                  ))}
+                  {users.length === 0 && (
+                    <tr>
+                      <td colSpan="7" className="text-center">No Villagers Found</td>
+                    </tr>
+                  )}
 
                 </tbody>
               </table>

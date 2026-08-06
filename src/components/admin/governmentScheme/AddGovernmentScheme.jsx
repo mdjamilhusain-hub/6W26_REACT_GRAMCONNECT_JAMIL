@@ -123,7 +123,7 @@ export default function AddGovernmentScheme() {
 
                 <div className="col-lg-9">
 
-                    <div className="php-email-form mt-5 shadow rounded-4">
+                    <div className="mt-5 rounded-4">
 
                         <div className="mb-4">
 

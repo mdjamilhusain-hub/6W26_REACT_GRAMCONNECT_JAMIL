@@ -72,10 +72,35 @@ function Header() {
             </li>
 
             <li>
+              <Link to="/schemes">
+                Schemes
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/events">
+                Events
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/my-scheme-applications">
+                My Applications
+              </Link>
+            </li>
+
+            <li>
               <Link to="/complaints">
                 My Complaints
               </Link>
             </li>
+
+            <li>
+              <Link to="/profile">
+                Profile
+              </Link>
+            </li>
+
             <li>
               <Link to="/contact">
                 Contact

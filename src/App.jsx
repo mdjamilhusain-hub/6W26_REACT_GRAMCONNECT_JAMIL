@@ -16,6 +16,8 @@ import ManageCategories from './components/admin/category/ManageCategories'
 import ManageComplaints from './components/admin/complaints/ManageComplaints'
 import ManageSchemes from './components/admin/Schemes/ManageSchemes'
 import ManageEvents from './components/admin/Events/ManageEvents'
+import AddEvent from './components/admin/Events/AddEvent'
+import ViewEvents from './components/villager/pages/ViewEvents'
 import AddCategory from './components/admin/category/AddCategory'
 import EditCategory from './components/admin/category/EditCategory'
 import ViewComplaint from './components/villager/complaint/ViewComplaint'
@@ -23,6 +25,12 @@ import AddComplaint from './components/villager/complaint/AddComplaint'
 import ComplaintDetail from './components/admin/complaints/ComplaintDetail'
 import MyComplaintDetail from './components/villager/complaint/MyComplaintDetail'
 import AddGovernmentScheme from './components/admin/governmentScheme/AddGovernmentScheme'
+
+import ViewSchemes from './components/villager/schemes/ViewSchemes'
+import ApplyScheme from './components/villager/schemes/ApplyScheme'
+import MySchemeApplications from './components/villager/schemes/MySchemeApplications'
+import ManageSchemeApplications from './components/admin/Schemes/ManageSchemeApplications'
+import UpdateProfile from './components/villager/pages/UpdateProfile'
 
 function App() {
 
@@ -45,7 +53,17 @@ function App() {
             <Route path='/Blog' element={<Blog />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            
+            {/* Villager Scheme Routes */}
+            <Route path='/schemes' element={<ViewSchemes />} />
+            <Route path='/apply-scheme/:id' element={<ApplyScheme />} />
+            <Route path='/my-scheme-applications' element={<MySchemeApplications />} />
 
+            {/* Villager Events Route */}
+            <Route path='/events' element={<ViewEvents />} />
+
+            {/* Villager Profile Route */}
+            <Route path='/profile' element={<UpdateProfile />} />
 
           </Route>
 
@@ -60,7 +78,9 @@ function App() {
             <Route path='complaint/:id' element={<ComplaintDetail />} />
             <Route path='governmentScheme/add' element={<AddGovernmentScheme />} />
             <Route path="Schemes" element={<ManageSchemes/>}></Route>
+            <Route path='scheme-applications/:id' element={<ManageSchemeApplications />} />
             <Route path="Events" element={<ManageEvents/>}></Route>
+            <Route path='event/add' element={<AddEvent />} />
             
 
           

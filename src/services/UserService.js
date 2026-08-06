@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "../firebase/firebaseConfig"
 import UserModel from "../models/UserModel"
-import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore"
+import { collection, doc, deleteDoc, getDoc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore"
 import AuthService from './AuthService'
 
 
@@ -51,7 +51,7 @@ class UserService {
 
     }
 
-     async all() {
+    async all() {
         let q = query(collection(db, dbPath), where("userType", "==", 2))
         const querySnapshot = await getDocs(q);
         let users = []
@@ -59,6 +59,25 @@ class UserService {
             users.push({ id: doc.id, ...doc.data() })
         });
         return users;
+    }
+
+    async single(id) {
+        const docRef = doc(db, dbPath, id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            return { id: docSnap.id, ...docSnap.data() };
+        }
+        return false;
+    }
+
+    async update(data, id) {
+        const docRef = doc(db, dbPath, id);
+        await updateDoc(docRef, { ...data });
+    }
+
+    async deleteUser(id) {
+        const docRef = doc(db, dbPath, id);
+        await deleteDoc(docRef);
     }
 }
 
